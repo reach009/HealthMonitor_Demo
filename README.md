@@ -9,7 +9,7 @@
 
 ## Tech Stack
 
-- **Java**
+- **Java 21**
 - **Spring Boot**
 - **JPA (Java Persistence API)**
 - **Maven**
