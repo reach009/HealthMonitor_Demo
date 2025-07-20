@@ -30,7 +30,7 @@ jobs:
     # This command compiles the code, runs tests, and packages the app into a .jar file
     - name: Build with Maven
       # The working-directory tells the command to run inside your project's subfolder
-      working-directory: ./demo.reach  # <-- UPDATE THIS LINE
+      working-directory: ./demo.reach  # <-- UPDATE THIS LINE IF NEEDED
       run: mvn -B package --file pom.xml
 
     # 4. Log in to Docker Hub
@@ -47,8 +47,10 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
-        # The context now points to the subdirectory where the Dockerfile and target folder are
-        context: ./demo.reach # <-- UPDATE THIS LINE
+        # The context points to the subdirectory where the .jar file is
+        context: ./demo.reach # <-- UPDATE THIS LINE IF NEEDED
+        # The file parameter explicitly points to the Dockerfile in the root
+        file: ./Dockerfile
         push: true
         # The tag for the image, e.g., your-username/medical-register:latest
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/medical-register:latest
