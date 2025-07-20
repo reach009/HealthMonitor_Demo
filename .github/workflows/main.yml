@@ -84,18 +84,20 @@ jobs:
         username: ${{ secrets.EC2_USERNAME }}
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
+          # Use sudo for all docker commands to ensure permissions
+          
           # Log in to Docker Hub on the EC2 instance
-          docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+          sudo docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
           
           # Pull the latest image from Docker Hub
-          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/medical-register:latest
+          sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/medical-register:latest
           
           # Stop the existing container if it's running
-          docker stop medical-register-container || true
+          sudo docker stop medical-register-container || true
           
           # Remove the old container
-          docker rm medical-register-container || true
+          sudo docker rm medical-register-container || true
           
           # Run the new container from the updated image
           # Maps port 8080 on the EC2 instance to port 8080 in the container
-          docker run -d --name medical-register-container -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/medical-register:latest
+          sudo docker run -d --name medical-register-container -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/medical-register:latest
