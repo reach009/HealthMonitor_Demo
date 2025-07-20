@@ -41,9 +41,8 @@
 
 ## Example Usage
 
-- **View all patients:** Navigate to `/patients` to see the list of patient records.
+- **View all patients:** Navigate to `/` to see the list of patient records.
 - **Edit a patient record:** Click the "Edit" button next to a patient’s name to update their details.
-  
 
 ## Contribution Guidelines
 
