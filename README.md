@@ -15,6 +15,7 @@
 - **Maven**
 - **XHTML**
 - **Thymeleaf**
+- **Docker**
 
 ## Setup & Installation
 
