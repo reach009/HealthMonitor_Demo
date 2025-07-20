@@ -48,7 +48,7 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         # The context now points to the subdirectory where the Dockerfile and target folder are
-        context: ./your-project-subdirectory # <-- UPDATE THIS LINE
+        context: ./demo.reach # <-- UPDATE THIS LINE
         push: true
         # The tag for the image, e.g., your-username/medical-register:latest
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/medical-register:latest
