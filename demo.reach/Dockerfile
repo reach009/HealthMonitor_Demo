@@ -4,13 +4,11 @@ FROM openjdk:21-jdk-slim as builder
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the Maven wrapper and pom.xml to leverage Docker layer caching
-# This step is commented out but is a good practice for larger projects
-# COPY .mvn/ .mvn
-# COPY mvnw pom.xml ./
-
 # Copy the rest of the application source code
 COPY . .
+
+# Grant execute permission to the Maven wrapper
+RUN chmod +x ./mvnw
 
 # Build the application using Maven, skipping tests as they are run in the CI pipeline
 RUN ./mvnw -B package -DskipTests
