@@ -26,8 +26,11 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
 
-    # 3. Build with Maven (Compiles, tests, and packages the .jar)
+    # 3. Build with Maven
+    # This command compiles the code, runs tests, and packages the app into a .jar file
     - name: Build with Maven
+      # The working-directory tells the command to run inside your project's subfolder
+      working-directory: ./demo.reach  # <-- UPDATE THIS LINE
       run: mvn -B package --file pom.xml
 
     # 4. Log in to Docker Hub
@@ -44,7 +47,8 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
-        context: .
+        # The context now points to the subdirectory where the Dockerfile and target folder are
+        context: ./your-project-subdirectory # <-- UPDATE THIS LINE
         push: true
         # The tag for the image, e.g., your-username/medical-register:latest
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/medical-register:latest
